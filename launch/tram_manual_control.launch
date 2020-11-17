@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="maximum_speed"              default="10"/> <!-- KpH-->
+  <arg name="maximum_steering_angle"     default="360"/>  <!-- degree-->
+  <arg name="reverse_angle"              default="false"/>  <!-- if true, CW is positive value-->
+                                                            <!-- if false, CCW is positive value-->
+
+  
+  <!-- Teleop Joy Controller -->
+  <include file = "$(find teleop_twist_joy)/launch/teleop.launch"/>
+  
+  <!-- Teleop Joy Controller -->
+  <node pkg="etri_joy_controller" type="etri_joy_controller_node" name="etri_joy_controller_node" output="screen" respawn="true">
+    <param name="maximum_steering_angle" value="$(arg maximum_steering_angle)" />
+    <param name="maximum_speed" value="$(arg maximum_speed)" />
+    <param name="reverse_angle" value="$(arg reverse_angle)" />
+
+  </node>
+
+</launch>
